@@ -48,6 +48,9 @@ jobs:
         login-server: ${{ secrets.ACR_LOGIN_SERVER }}
         username: ${{ secrets.ACR_USERNAME }}
         password: ${{ secrets.ACR_PASSWORD }}
+      env:
+        REGISTRY: ${{ secrets.ACR_LOGIN_SERVER }}
+        IMAGE_NAME: cloud-portfolio
 
     - name: Build and push Docker image
       run: |
