@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cloud-portfolio
+  labels:
+    app: cloud-portfolio
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: cloud-portfolio
+  template:
+    metadata:
+      labels:
+        app: cloud-portfolio
+    spec:
+      containers:
+      - name: app
+        image: ${{ secrets.ACR_LOGIN_SERVER }}/cloud-portfolio:latest
+        ports:
+        - containerPort: 8080
+        env:
+        - name: PORT
+          value: "8080"
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "100m"
+          limits:
+            memory: "256Mi"
+            cpu: "200m"
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 8080
+          initialDelaySeconds: 30
+          periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 8080
+          initialDelaySeconds: 5
+          periodSeconds: 5

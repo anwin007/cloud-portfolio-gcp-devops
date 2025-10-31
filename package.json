@@ -1,20 +1,23 @@
 {
-  "name": "cloud-portfolio",
+  "name": "anwin-devops",
   "version": "1.0.0",
-  "description": "Simple portfolio app used for automated DevOps pipeline demo",
-  "main": "server.js",
+  "main": "dist/index.js",
   "scripts": {
-    "start": "node server.js",
-    "dev": "node server.js"
+    "start": "node dist/index.js",
+    "build": "tsc",
+    "dev": "ts-node src/index.ts"
   },
-  "author": "ShaunSunny",
-  "license": "MIT",
+  "engines": {
+    "node": ">=14.0.0"
+  },
   "dependencies": {
-    "aws-sdk": "^2.1692.0",
     "dotenv": "^17.2.3",
-    "express": "^4.18.2"
+    "express": "^5.1.0"
   },
   "devDependencies": {
-    "hardhat": "^3.0.9"
+    "@types/express": "^5.0.5",
+    "@types/node": "^24.9.2",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3"
   }
 }
